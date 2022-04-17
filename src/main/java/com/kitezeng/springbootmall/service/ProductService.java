@@ -1,6 +1,6 @@
 package com.kitezeng.springbootmall.service;
 
-import com.kitezeng.springbootmall.constant.ProductCategory;
+import com.kitezeng.springbootmall.dao.ProductQueryParams;
 import com.kitezeng.springbootmall.dto.ProductRequest;
 import com.kitezeng.springbootmall.model.Product;
 
@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ProductService {
 
-    List<Product> getProducts(ProductCategory category,String search);
+    List<Product> getProducts(ProductQueryParams productQueryParams);
 
     Product getProductById(Integer productId);
 

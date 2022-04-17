@@ -1,6 +1,7 @@
 package com.kitezeng.springbootmall.controller;
 
 import com.kitezeng.springbootmall.constant.ProductCategory;
+import com.kitezeng.springbootmall.dao.ProductQueryParams;
 import com.kitezeng.springbootmall.dto.ProductRequest;
 import com.kitezeng.springbootmall.model.Product;
 import com.kitezeng.springbootmall.service.ProductService;
@@ -21,8 +22,11 @@ public class ProductController {
     @GetMapping("/products")
     public ResponseEntity<List<Product>> getProducts(@RequestParam(required = false) ProductCategory category,
                                                      @RequestParam(required = false) String search){
+        ProductQueryParams productQueryParams = new ProductQueryParams();
+        productQueryParams.setCategory(category);
+        productQueryParams.setSearch(search);
 
-        List<Product> productList = productService.getProducts(category,search);
+        List<Product> productList = productService.getProducts(productQueryParams);
 
         return ResponseEntity.status(HttpStatus.OK).body(productList);
     }
