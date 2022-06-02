@@ -137,6 +137,16 @@ public class ProductDaoImpl implements ProductDao {
         namedParameterJdbcTemplate.update(sql,map);
     }
 
+    @Override
+    public void deleteProductFromName(String productName) {
+        String sql = "delete from product where product_name =  :productName";
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("productName",productName);
+
+        namedParameterJdbcTemplate.update(sql,map);
+    }
+
     private String addFilteringSql(String sql , Map<String,Object> map , ProductQueryParams productQueryParams){
 
         if(productQueryParams.getCategory() !=null){

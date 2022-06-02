@@ -20,4 +20,6 @@ public interface ProductService {
 
     void deleteProductById(Integer productId);
 
+    void deleteProductFromName(String productName);
+
 }
