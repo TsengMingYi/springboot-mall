@@ -21,4 +21,6 @@ public interface ProductDao {
     void deleteProductById(Integer productId);
 
     void deleteProductFromName(String productName);
+
+    void updateStock(Integer productId,Integer stock);
 }
