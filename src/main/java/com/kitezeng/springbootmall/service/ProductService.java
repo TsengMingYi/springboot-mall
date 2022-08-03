@@ -3,23 +3,29 @@ package com.kitezeng.springbootmall.service;
 import com.kitezeng.springbootmall.dao.ProductQueryParams;
 import com.kitezeng.springbootmall.dto.ProductRequest;
 import com.kitezeng.springbootmall.model.Product;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface ProductService {
 
-    Integer countProduct(ProductQueryParams productQueryParams);
+    public Integer countProduct(ProductQueryParams productQueryParams);
 
-    List<Product> getProducts(ProductQueryParams productQueryParams);
+    public List<Product> getProducts(ProductQueryParams productQueryParams);
 
-    Product getProductById(Integer productId);
+    public Product getProductById(Integer productId);
 
-    Integer createProduct(ProductRequest productRequest);
+    public Integer createProduct(String imageUrl,ProductRequest productRequest);
 
-    void updateProduct(Integer productId , ProductRequest productRequest);
+    public void updateProduct(Integer productId , ProductRequest productRequest);
 
-    void deleteProductById(Integer productId);
+    public void deleteProductById(Integer productId);
 
-    void deleteProductFromName(String productName);
+    public void deleteProductFromName(String productName);
+
+    public Object upload(MultipartFile multipartFile);
+
+    public Object download(String fileName) throws IOException;
 
 }

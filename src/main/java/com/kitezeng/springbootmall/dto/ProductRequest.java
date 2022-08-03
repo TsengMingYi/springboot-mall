@@ -13,7 +13,6 @@ public class ProductRequest {
     @NotNull
     private ProductCategory category;
 
-    @NotNull
     private String imageUrl;
 
     @NotNull

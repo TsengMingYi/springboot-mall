@@ -11,10 +11,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import java.io.IOException;
 import java.util.List;
 
 @Validated
@@ -74,14 +76,23 @@ public class ProductController {
         }
     }
 
-    @PostMapping("/products")
-    public ResponseEntity<Product> createProduct(@RequestBody @Valid ProductRequest productRequest) {
-        Integer productId = productService.createProduct(productRequest);
+//    @PostMapping("/products")
+//    public ResponseEntity<Product> createProduct(@RequestBody @Valid ProductRequest productRequest) {
+//        Integer productId = productService.createProduct(productRequest);
+//
+//        Product product = productService.getProductById(productId);
+//
+//        return ResponseEntity.status(HttpStatus.CREATED).body(product);
+//    }
+@PostMapping("/products")
+public ResponseEntity<Product> createProduct(@RequestParam("file") MultipartFile multipartFile,@RequestBody @Valid ProductRequest productRequest) {
+        String imageUrl = (String) productService.upload(multipartFile);
+    Integer productId = productService.createProduct(imageUrl,productRequest);
 
-        Product product = productService.getProductById(productId);
+    Product product = productService.getProductById(productId);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(product);
-    }
+    return ResponseEntity.status(HttpStatus.CREATED).body(product);
+}
 
     @PutMapping("/products/{productId}")
     public ResponseEntity<Product> updateProduct(@PathVariable Integer productId,
@@ -112,5 +123,19 @@ public class ProductController {
         productService.deleteProductFromName(productName);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+//    @PostMapping("/upload")
+//    public Object upload(@RequestParam("file") MultipartFile multipartFile) {
+//        String imageUrl = (String)productService.upload(multipartFile);
+//
+////        logger.info("HIT -/upload | File Name : {}", multipartFile.getOriginalFilename());
+//        return productService.upload(multipartFile);
+//    }
+//
+//    @PostMapping("/upload/{fileName}")
+//    public Object download(@PathVariable String fileName) throws IOException {
+////        logger.info("HIT -/download | File Name : {}", fileName);
+//        return productService.download(fileName);
+//    }
 
 }

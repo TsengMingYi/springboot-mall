@@ -80,7 +80,8 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public Integer createProduct(ProductRequest productRequest) {
+    public Integer createProduct(String imageUrl,ProductRequest productRequest) {
+
         String sql = "INSERT INTO product(product_name,category,image_url,price,stock,"+
                 "description,created_date,last_modified_date)"+
                 "values (:productName,:category,:imageUrl,:price,:stock,:description,"+
@@ -89,7 +90,7 @@ public class ProductDaoImpl implements ProductDao {
         Map<String,Object> map = new HashMap<>();
         map.put("productName",productRequest.getProductName());
         map.put("category",productRequest.getCategory().toString());
-        map.put("imageUrl",productRequest.getImageUrl());
+        map.put("imageUrl",imageUrl);
         map.put("price",productRequest.getPrice());
         map.put("stock",productRequest.getStock());
         map.put("description",productRequest.getDescription());

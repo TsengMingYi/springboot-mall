@@ -14,7 +14,7 @@ public interface ProductDao {
 
     Product getProductById(Integer productId);
 
-    Integer createProduct(ProductRequest productRequest);
+    Integer createProduct(String imageUrl,ProductRequest productRequest);
 
     void updateProduct(Integer productId , ProductRequest productRequest);
 
