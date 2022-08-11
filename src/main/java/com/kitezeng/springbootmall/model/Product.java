@@ -7,6 +7,7 @@ import java.util.Date;
 public class Product {
     private Integer productId;
 
+
     public String getProductName() {
         return productName;
     }
@@ -23,6 +24,7 @@ public class Product {
     private String description;
     private Date createdDate;
     private Date lastModifiedDate;
+
 
     public Integer getProductId() {
         return productId;

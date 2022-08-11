@@ -73,4 +73,9 @@ public class UserServiceImpl implements UserService {
 //            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 //        }
     }
+
+    @Override
+    public User getUserByEmail(String userEmail) {
+        return userDao.getUserByEmail(userEmail);
+    }
 }

@@ -69,6 +69,16 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
+    public void deleteOrderByOrderId(Integer orderId) {
+        String sql = "delete from `order` where order_id = :orderId";
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("orderId",orderId);
+
+        namedParameterJdbcTemplate.update(sql,map);
+    }
+
+    @Override
     public void createOrderItems(Integer orderId, List<OrderItem> orderItemList) {
         String sql = "insert into order_item(order_id, product_id, quantity, amount) " +
                 "values (:orderId, :productId, :quantity, :amount)";

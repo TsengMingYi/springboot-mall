@@ -112,4 +112,10 @@ public class OrderServiceImpl implements OrderService {
     public Integer countOrder(OrderQueryParams orderQueryParams) {
         return orderDao.countOrder(orderQueryParams);
     }
+
+    @Override
+    public void deleteOrderByOrderId(Integer orderId) {
+
+        orderDao.deleteOrderByOrderId(orderId);
+    }
 }

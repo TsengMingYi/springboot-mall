@@ -15,4 +15,6 @@ public interface OrderService {
     public List<Order> getOrders(OrderQueryParams orderQueryParams);
 
     public Integer countOrder(OrderQueryParams orderQueryParams);
+
+    public void deleteOrderByOrderId(Integer orderId);
 }

@@ -11,6 +11,7 @@ public class ProductQueryParams {
     private Integer limit;
     private Integer offset;
 
+
     public Integer getLimit() {
         return limit;
     }

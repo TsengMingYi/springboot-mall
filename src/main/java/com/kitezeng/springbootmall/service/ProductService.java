@@ -20,9 +20,12 @@ public interface ProductService {
 
     public void updateProduct(Integer productId , ProductRequest productRequest);
 
+
     public void deleteProductById(Integer productId);
 
     public void deleteProductFromName(String productName);
+
+//    public String saveTest(MultipartFile file) throws IOException;
 
     public Object upload(MultipartFile multipartFile);
 

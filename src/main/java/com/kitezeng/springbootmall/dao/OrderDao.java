@@ -14,6 +14,8 @@ public interface OrderDao {
 
     public Integer createOrder(Integer userId, Integer totalAmount);
 
+    public void deleteOrderByOrderId(Integer orderId);
+
     public void createOrderItems(Integer orderId , List<OrderItem> orderItemList);
 
     public List<Order> getOrders(OrderQueryParams orderQueryParams);

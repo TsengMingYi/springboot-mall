@@ -85,9 +85,11 @@ public class ProductController {
 //        return ResponseEntity.status(HttpStatus.CREATED).body(product);
 //    }
 @PostMapping("/products")
-public ResponseEntity<Product> createProduct(@RequestParam("file") MultipartFile multipartFile,@RequestBody @Valid ProductRequest productRequest) {
-        String imageUrl = (String) productService.upload(multipartFile);
-    Integer productId = productService.createProduct(imageUrl,productRequest);
+public ResponseEntity<Product> createProduct(@RequestPart("file") MultipartFile multipartFile, @RequestPart("product") @Valid ProductRequest productRequest) {
+
+    String imageUrl = (String) productService.upload(multipartFile);
+
+    Integer productId = productService.createProduct(imageUrl, productRequest);
 
     Product product = productService.getProductById(productId);
 
@@ -124,12 +126,16 @@ public ResponseEntity<Product> createProduct(@RequestParam("file") MultipartFile
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
+
 //    @PostMapping("/upload")
-//    public Object upload(@RequestParam("file") MultipartFile multipartFile) {
-//        String imageUrl = (String)productService.upload(multipartFile);
-//
+//    public ResponseEntity upload(@RequestParam("file") MultipartFile multipartFile) {
+//        try {
+//            String imageUrl = productService.saveTest(multipartFile);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 ////        logger.info("HIT -/upload | File Name : {}", multipartFile.getOriginalFilename());
-//        return productService.upload(multipartFile);
+//        return ResponseEntity.ok().build();
 //    }
 //
 //    @PostMapping("/upload/{fileName}")

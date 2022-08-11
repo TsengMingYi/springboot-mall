@@ -63,4 +63,10 @@ public class OrderController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(order);
     }
+
+    @DeleteMapping("/orders/{orderId}")
+    public ResponseEntity<?> deleteOrder(@PathVariable Integer orderId){
+        orderService.deleteOrderByOrderId(orderId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }

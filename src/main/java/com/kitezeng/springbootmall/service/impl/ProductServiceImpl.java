@@ -10,8 +10,11 @@ import com.kitezeng.springbootmall.dto.ProductRequest;
 import com.kitezeng.springbootmall.model.Product;
 import com.kitezeng.springbootmall.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -22,7 +25,9 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Component
@@ -32,6 +37,19 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductDao productDao;
+    private Storage storage;
+
+    @EventListener
+    public void init(ApplicationReadyEvent event) {
+        try {
+            ClassPathResource serviceAccount = new ClassPathResource("springboot-mall-firebase-adminsdk-cjn0f-aad2c519fc.json");
+            storage = StorageOptions.newBuilder().
+                    setCredentials(GoogleCredentials.fromStream(serviceAccount.getInputStream())).
+                    setProjectId("springboot-mall").build().getService();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 
     @Override
     public Integer countProduct(ProductQueryParams productQueryParams) {
@@ -58,6 +76,7 @@ public class ProductServiceImpl implements ProductService {
         productDao.updateProduct(productId,productRequest);
     }
 
+
     @Override
     public void deleteProductById(Integer productId) {
         productDao.deleteProductById(productId);
@@ -67,6 +86,7 @@ public class ProductServiceImpl implements ProductService {
     public void deleteProductFromName(String productName) {
         productDao.deleteProductFromName(productName);
     }
+
 
     @Override
     public Object upload(MultipartFile multipartFile) {

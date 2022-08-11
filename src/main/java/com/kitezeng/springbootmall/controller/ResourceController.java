@@ -18,16 +18,16 @@ public class ResourceController {
     private FileService fileService;
 
 
-    @PostMapping("/upload")
-    public Object upload(@RequestParam("file") MultipartFile multipartFile) {
+//    @PostMapping("/upload")
+//    public Object upload(@RequestParam("file") MultipartFile multipartFile) {
+//
+////        logger.info("HIT -/upload | File Name : {}", multipartFile.getOriginalFilename());
+//        return fileService.upload(multipartFile);
+//    }
 
-//        logger.info("HIT -/upload | File Name : {}", multipartFile.getOriginalFilename());
-        return fileService.upload(multipartFile);
-    }
-
-    @PostMapping("/upload/{fileName}")
-    public Object download(@PathVariable String fileName) throws IOException {
-//        logger.info("HIT -/download | File Name : {}", fileName);
-        return fileService.download(fileName);
-    }
+//    @PostMapping("/upload/{fileName}")
+//    public Object download(@PathVariable String fileName) throws IOException {
+////        logger.info("HIT -/download | File Name : {}", fileName);
+//        return fileService.download(fileName);
+//    }
 }
