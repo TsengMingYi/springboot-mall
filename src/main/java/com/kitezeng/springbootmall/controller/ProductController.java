@@ -19,6 +19,7 @@ import javax.validation.constraints.Min;
 import java.io.IOException;
 import java.util.List;
 
+@CrossOrigin
 @Validated
 @RestController
 public class ProductController {

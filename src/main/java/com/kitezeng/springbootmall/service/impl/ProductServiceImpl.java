@@ -104,6 +104,8 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
+
+
     @Override
     public Object download(String fileName) throws IOException {
         String destFileName = UUID.randomUUID().toString().concat(this.getExtension(fileName));     // to set random strinh for destination file name
@@ -136,6 +138,7 @@ public class ProductServiceImpl implements ProductService {
         }
         return tempFile;
     }
+    
 
     private String getExtension(String fileName) {
         return fileName.substring(fileName.lastIndexOf("."));

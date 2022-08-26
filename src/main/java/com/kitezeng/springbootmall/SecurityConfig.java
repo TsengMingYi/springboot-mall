@@ -16,6 +16,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE).permitAll()
                 .and()
                 .csrf().disable()
-                .formLogin();
+//                .cors().disable()
+                ;
     }
 }
